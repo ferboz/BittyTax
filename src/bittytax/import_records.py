@@ -98,16 +98,12 @@ class ImportRecords:
                 print(f"{Fore.CYAN}importing '{worksheet.name}' rows")
 
             for row_num in trange(
-                0,
+                1,
                 worksheet.nrows,
                 unit=" row",
                 desc=f"{Fore.CYAN}importing '{worksheet.name}' rows{Fore.GREEN}",
                 disable=bool(config.debug or not sys.stdout.isatty()),
             ):
-                if row_num == 0:
-                    # Skip headers
-                    continue
-
                 row = [
                     self.convert_cell_xls(worksheet.cell(row_num, cell_num), workbook)
                     for cell_num in range(0, worksheet.ncols)
